@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Evento(models.Model):
-    titolo = models.CharFiled(max_lenght=200)
+    titolo = models.CharField(max_lenght=200)
     descrizione = models.TextField(blank=True)
     data = models.DateTimeField()
     posti_totali = models.PositiveIntegerField()
