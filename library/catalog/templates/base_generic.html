@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   {% block title %}
   <title>Catalog</title>
@@ -23,17 +24,19 @@
         {% block sidebar %}
         <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
-
           {% if user.is_authenticated %}
-            <li>Utente: {{ user.get_username }}</li>
-            <li>
-              <form method="post" action="{% url 'logout' %}?next={{ request.path }}">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-              </form>
-            </li>
+          <li>Utente: {{ user.get_username }}</li>
+          <li>
+            <form method="post" action="{% url 'logout' %}?next={{ request.path }}">
+              {% csrf_token %}
+              <button type="submit">Logout</button>
+            </form>
+          </li>
           {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
+          <li>
+            <a href="{% url 'login' %}?next=/catalog/">Login</a>
+            <a href="{% url 'signup' '/' %}">Sign up</a>
+          </li>
           {% endif %}
         </ul>
         {% endblock %}
@@ -46,17 +49,17 @@
 
         {% block pagination %}
         {% if is_paginated %}
-          <div class="pagination">
-            {% if page_obj.has_previous %}
-              <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
+        <div class="pagination">
+          {% if page_obj.has_previous %}
+          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
 
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
 
-            {% if page_obj.has_next %}
-              <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-            {% endif %}
-          </div>
+          {% if page_obj.has_next %}
+          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+          {% endif %}
+        </div>
         {% endif %}
         {% endblock %}
       </div>
@@ -64,4 +67,5 @@
     </div>
   </div>
 </body>
+
 </html>

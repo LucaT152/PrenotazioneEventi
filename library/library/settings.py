@@ -124,6 +124,7 @@ STATIC_URL = 'static/css/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Redirect to home URL after login
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/catalog/'
+LOGOUT_REDIRECT_URL = '/catalog/'
 # Redirect Django-generated emails to console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

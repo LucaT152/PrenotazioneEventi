@@ -1,8 +1,13 @@
-from django.shortcuts import render
 from .models import Evento, Prenotazione
 from django.views import generic
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth import login, authenticate, logout
+from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.auth.models import Group
+from django.contrib.auth.forms import UserCreationForm
+from .forms import SignupForm
 
 def index(request):
     eventi = Evento.objects.all().order_by('data')
@@ -42,3 +47,38 @@ def prenota_evento(request, pk):
     )
 
     return redirect('evento-detail', pk=pk)
+
+def signup(request, next):
+
+    if request.method != 'POST':
+        form = SignupForm()
+        return render(request, 'catalog/signup.html', {'form': form})
+
+    else:
+        form = SignupForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            auth_user = authenticate(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password1']
+            )
+
+            login(request, auth_user)
+
+            gruppo_utenti = Group.objects.get(name='Utenti')
+            auth_user.groups.add(gruppo_utenti)
+
+            if not next or 'signup' in next or 'login' in next:
+                next = reverse('index')
+                
+            return HttpResponseRedirect(next)
+
+        else:
+            return render(request, 'catalog/signup.html', {'form': form})
+        
+def resetlogin(request, next):
+    request.session['num_visits'] = 0
+    request.session.modified = True
+    return HttpResponseRedirect(reverse('login') + "?next=" + next)
