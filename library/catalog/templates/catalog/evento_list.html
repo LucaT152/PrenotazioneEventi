@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Elenco eventi</h1>
+
+<ul>
+  {% for evento in object_list %}
+    <li>
+      <a href="{{ evento.get_absolute_url }}">
+        {{ evento.titolo }}
+      </a>
+      ({{ evento.data }})
+    </li>
+  {% endfor %}
+</ul>
+
+{% if is_paginated %}
+  <div>
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+    {% endif %}
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock %}

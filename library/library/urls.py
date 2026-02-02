@@ -14,6 +14,6 @@ urlpatterns = [
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns+= static(settings.STATIC_URL, doocument_root=settings.STATIC_ROOT)   #servono per poter utilizzare fogli di stile
+urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)   #servono per poter utilizzare fogli di stile
 
 urlpatterns += [ path('accounts/', include('django.contrib.auth.urls')), ]
