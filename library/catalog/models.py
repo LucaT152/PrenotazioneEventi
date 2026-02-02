@@ -13,10 +13,10 @@ class Evento(models.Model):
     def __str__(self):
         return self.titolo
     
-class renotazione(models.Model):
-    evento = models.ForeignKey(Evento, on_delete=models.CASCADE, related_name='prenotazioni')  
+class Prenotazione(models.Model):
+    evento = models.ForeignKey(Evento, on_delete=models.CASCADE)  
     utente = models.ForeignKey(User, on_delete=models.CASCADE)
-    data_prenotazione = models.DateTimeField(auto_now_add=True)
+    data_prenotazione = models.DateTimeField()
 
     class Meta:
         unique_together = ('evento', 'utente')

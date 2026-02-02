@@ -1,9 +1,6 @@
 from django.urls import path
-from django.http import HttpResponse
-
-def placeholder(request):
-    return HttpResponse("Catalog app pronta")
+from . import views
 
 urlpatterns = [
-    path('', placeholder, name='index'),
+    path('', views.index, name='index'),
 ]
