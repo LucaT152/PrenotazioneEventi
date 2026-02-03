@@ -1,11 +1,28 @@
-{% extends "base_generic.html" %} {% block content %}
-<h1>Local Library Home</h1>
-<p>Welcome to Local Library!</p>
-<h2>Dynamic content</h2>
-<p>The library has the following record counts:</p>
-<ul>
-  <li><strong>Books:</strong> {{ num_books }}</li>
-  <li><strong>Authors:</strong> {{ num_authors }}</li>
-</ul>
-<p>Your visits to this page: {{ num_visits }}</p>
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Eventi disponibili</h1>
+
+<div class="event-list">
+  {% for evento in eventi %}
+    <div class="event-card">
+      <h2>{{ evento.titolo }}</h2>
+
+      <p class="event-date">
+        <strong>📅 Data:</strong> {{ evento.data }}
+      </p>
+
+      <p class="event-description">
+        {{ evento.descrizione|truncatewords:20 }}
+      </p>
+
+      <a href="{{ evento.get_absolute_url }}" class="btn btn-primary">
+        Dettagli
+      </a>
+    </div>
+  {% empty %}
+    <p>Nessun evento disponibile.</p>
+  {% endfor %}
+</div>
+
 {% endblock %}
