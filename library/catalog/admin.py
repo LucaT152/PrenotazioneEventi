@@ -13,6 +13,7 @@ class EventoAdmin(admin.ModelAdmin):
 class PrenotazioneAdmin(admin.ModelAdmin):
     list_display = ('evento', 'utente', 'data_prenotazione')
     list_filter = ('evento',)
+    search_fields = ('evento__titolo', 'utente__username')
 
 admin.site.register(Evento, EventoAdmin)
 admin.site.register(Prenotazione, PrenotazioneAdmin)

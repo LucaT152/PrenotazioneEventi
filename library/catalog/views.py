@@ -1,16 +1,19 @@
 from .models import Evento, Prenotazione
 from django.views import generic
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import Group
-from django.contrib.auth.forms import UserCreationForm
 from .forms import SignupForm
+from django.contrib import messages
+from django.utils import timezone
+
 
 def index(request):
-    eventi = Evento.objects.all().order_by('data')
+    eventi = Evento.objects.filter(data__gt=timezone.now()).order_by('data')
+
 
     num_visits = request.session.get('num_visits', 0) + 1
     request.session['num_visits'] = num_visits
@@ -40,11 +43,24 @@ class EventoDetailView(generic.DetailView):
 def prenota_evento(request, pk):
     evento = get_object_or_404(Evento, pk=pk)
 
-    # evita doppia prenotazione
-    Prenotazione.objects.get_or_create(
+    # Controllo evento prenotabile
+    if evento.data <= timezone.now():
+        messages.error(request, "Evento non più prenotabile.")
+        return redirect('evento-detail', pk=pk)
+
+    if evento.posti_disponibili() <= 0:
+        messages.error(request, "Evento completo.")
+        return redirect('evento-detail', pk=pk)
+
+    prenotazione, created = Prenotazione.objects.get_or_create(
+        utente=request.user,
         evento=evento,
-        utente=request.user
     )
+
+    if created:
+        messages.success(request, "Prenotazione effettuata con successo!")
+    else:
+        messages.warning(request, "Hai già prenotato questo evento.")
 
     return redirect('evento-detail', pk=pk)
 
@@ -82,3 +98,26 @@ def resetlogin(request, next):
     request.session['num_visits'] = 0
     request.session.modified = True
     return HttpResponseRedirect(reverse('login') + "?next=" + next)
+
+@login_required
+def mie_prenotazioni(request):
+    prenotazioni = Prenotazione.objects.filter(
+        utente=request.user
+    ).select_related('evento')
+
+    return render(request, 'catalog/mie_prenotazioni.html', {
+        'prenotazioni': prenotazioni
+    })
+
+@login_required
+def disdici_prenotazione(request, pk):
+    prenotazione = get_object_or_404(
+        Prenotazione,
+        pk=pk,
+        utente=request.user
+    )
+
+    prenotazione.delete()
+    messages.success(request, "Prenotazione annullata con successo.")
+
+    return redirect('mie-prenotazioni')

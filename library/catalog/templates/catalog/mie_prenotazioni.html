@@ -1,0 +1,37 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Le mie prenotazioni</title>
+{% endblock %}
+
+{% block content %}
+<h1>Le mie prenotazioni</h1>
+
+{% if prenotazioni %}
+  <ul class="prenotazioni-list">
+    {% for prenotazione in prenotazioni %}
+      <li class="prenotazione-item">
+        <h3>{{ prenotazione.evento.titolo }}</h3>
+
+        <p>
+          <strong>Data evento:</strong>
+          {{ prenotazione.evento.data|date:"d/m/Y H:i" }}
+        </p>
+
+        <p>
+          <strong>Data prenotazione:</strong>
+          {{ prenotazione.data_prenotazione|date:"d/m/Y H:i" }}
+        </p>
+
+        <a class="btn-disdici"
+           href="{% url 'disdici-prenotazione' prenotazione.id %}">
+          Disdici prenotazione
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Non hai ancora effettuato prenotazioni.</p>
+{% endif %}
+
+{% endblock %}

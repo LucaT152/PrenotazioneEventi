@@ -2,6 +2,7 @@
 from django.urls import reverse
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Evento(models.Model):
     titolo = models.CharField(max_length=200)
@@ -19,6 +20,12 @@ class Evento(models.Model):
 
     def __str__(self):
         return self.titolo
+    
+    def posti_disponibili(self):
+        return self.posti_totali - self.prenotazione_set.count()
+    
+    def is_prenotabile(self):
+        return self.data > timezone.now() and self.posti_disponibili() > 0
     
 class Prenotazione(models.Model):
     evento = models.ForeignKey(Evento, on_delete=models.CASCADE)  
