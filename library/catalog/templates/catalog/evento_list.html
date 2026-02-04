@@ -1,27 +1,29 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Elenco eventi</h1>
+<h1>Eventi disponibili</h1>
 
-<ul>
+<div class="event-list">
   {% for evento in object_list %}
-    <li>
-      <a href="{{ evento.get_absolute_url }}">
-        {{ evento.titolo }}
-      </a>
-      ({{ evento.data }})
-    </li>
-  {% endfor %}
-</ul>
+    <div class="event-card">
+      <div class="event-main">
+        <h2 class="event-title">{{ evento.titolo }}</h2>
 
-{% if is_paginated %}
-  <div>
-    {% if page_obj.has_previous %}
-      <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
-    {% endif %}
-    {% if page_obj.has_next %}
-      <a href="?page={{ page_obj.next_page_number }}">Next</a>
-    {% endif %}
-  </div>
-{% endif %}
+        <p class="event-date">
+          📅 {{ evento.data }}
+        </p>
+
+        <p class="event-description">
+          {{ evento.descrizione|truncatewords:20 }}
+        </p>
+      </div>
+
+      <div class="event-action">
+        <a href="{{ evento.get_absolute_url }}" class="btn btn-primary">
+          Dettagli
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
 {% endblock %}

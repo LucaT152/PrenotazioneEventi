@@ -1,9 +1,24 @@
 {% extends "base_generic.html" %}
+
 {% block content %}
-    <h1>Signup</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Signup</button>
+<div class="auth-container">
+  <div class="auth-card">
+
+    <h1>Registrazione</h1>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Registrati</button>
     </form>
+
+    <div class="auth-links">
+      <p>
+        Hai già un account?
+        <a href="{% url 'login' %}">Accedi</a>
+      </p>
+    </div>
+
+  </div>
+</div>
 {% endblock %}
