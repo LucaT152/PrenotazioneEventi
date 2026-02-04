@@ -9,6 +9,6 @@ urlpatterns = [
     path('resetlogin/<path:next>', views.resetlogin, name='resetlogin'),
     path('signup/<path:next>/', views.signup, name='signup'),
     path('mie-prenotazioni/', views.mie_prenotazioni, name='mie-prenotazioni'),
-    path('prenotazione/<int:pk>/disdici/',views.disdici_prenotazione,name='disdici-prenotazione',
-),
+    path('prenotazione/<int:pk>/disdici/',views.disdici_prenotazione,name='disdici-prenotazione'),
+    path('prenotazioni-eventi/',views.prenotazioni_eventi,name='prenotazioni-eventi'),
 ]

@@ -1,77 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    {% block title %}
-    <title>Catalog</title>
-    {% endblock %}
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  {% block title %}
+  <title>Catalog</title>
+  {% endblock %}
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="{% static 'css/home_layout.css' %}">
-    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
-  </head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <body>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'css/home_layout.css' %}">
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+</head>
 
-<!-- BARRA IN ALTO -->
-<nav class="top-nav">
-  <div class="nav-inner">
-    <ul class="sidebar-nav">
-      <li><a href="{% url 'index' %}">Home</a></li>
+<body>
 
-      {% if user.is_authenticated %}
+  <!-- BARRA IN ALTO -->
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <ul class="sidebar-nav">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        {% if user.is_staff %}
+        <li>
+          <a href="{% url 'prenotazioni-eventi' %}">
+            Prenotazioni eventi
+          </a>
+        </li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'mie-prenotazioni' %}">
+            Le mie prenotazioni
+          </a>
+        </li>
         <li class="nav-user">
           👤 {{ user.get_username }}
         </li>
+
         <li>
-          <form method="post" action="{% url 'logout' %}?next={{ request.path }}">
+          <form method="post" action="{% url 'logout' %}?next={% url 'index' %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-warning">Logout</button>
           </form>
         </li>
-      {% else %}
+        {% else %}
         <li><a href="{% url 'login' %}?next=/catalog/">Accedi</a></li>
         <li><a href="{% url 'signup' '/' %}">Registrati</a></li>
-      {% endif %}
-    </ul>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+
+  {% if messages %}
+  <div class="messages-container">
+    {% for message in messages %}
+    <div class="message {{ message.tags }}">
+      {{ message }}
+    </div>
+    {% endfor %}
   </div>
-</nav>
+  {% endif %}
 
+  <!-- CONTENUTO -->
+  <div class="container">
+    {% block content %}
+    {% endblock %}
 
-    {% if messages %}
-    <div class="messages-container">
-      {% for message in messages %}
-        <div class="message {{ message.tags }}">
-          {{ message }}
-        </div>
-      {% endfor %}
+    {% block pagination %}
+    {% if is_paginated %}
+    <div class="pagination">
+      {% if page_obj.has_previous %}
+      <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+      {% if page_obj.has_next %}
+      <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+      {% endif %}
     </div>
     {% endif %}
+    {% endblock %}
+  </div>
 
-    <!-- CONTENUTO -->
-    <div class="container">
-      {% block content %}
-      {% endblock %}
+</body>
 
-      {% block pagination %}
-      {% if is_paginated %}
-      <div class="pagination">
-        {% if page_obj.has_previous %}
-          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-
-        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-
-        {% if page_obj.has_next %}
-          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-        {% endif %}
-      </div>
-      {% endif %}
-      {% endblock %}
-    </div>
-
-    </body>
 </html>

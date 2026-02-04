@@ -9,6 +9,7 @@ from django.contrib.auth.models import Group
 from .forms import SignupForm
 from django.contrib import messages
 from django.utils import timezone
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 def index(request):
@@ -121,3 +122,12 @@ def disdici_prenotazione(request, pk):
     messages.success(request, "Prenotazione annullata con successo.")
 
     return redirect('mie-prenotazioni')
+
+
+@staff_member_required
+def prenotazioni_eventi(request):
+    eventi = Evento.objects.all()
+
+    return render(request, 'catalog/prenotazioni_eventi.html', {
+        'eventi': eventi
+    })
