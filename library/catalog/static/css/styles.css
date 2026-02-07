@@ -20,10 +20,10 @@ body {
 .top-nav {
   position: sticky;
   top: 0;
-  background-color: #ffffff;
+  z-index: 1000;
+  background-color: #fff;
   border-bottom: 1px solid #ddd;
   padding: 12px 24px;
-  z-index: 1000;
 }
 
 .sidebar-nav {
@@ -47,10 +47,10 @@ body {
 
 .nav-user {
   margin-left: auto;
-  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-weight: 600;
 }
 
 
@@ -96,36 +96,34 @@ body {
 .event-card {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 18px 22px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-.event-card + .event-card {
-  margin-top: 20px;
+  align-items: stretch; /* fondamentale */
 }
 
 .event-main {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.event-header {
+  margin-bottom: 6px;
 }
 
 .event-title {
-  margin: 0 0 6px 0;
+  margin: 0;
   font-size: 1.3em;
 }
 
-.event-date,
-.event-seats {
-  color: #555;
-  margin-bottom: 10px;
-}
-
 .event-date {
+  margin-top: 4px;
+  margin-bottom: 10px;
   font-size: 0.9em;
   color: #666;
+}
+
+.event-time {
+  font-size: 0.85em;
+  color: #999;
 }
 
 .event-description {
@@ -171,7 +169,7 @@ body {
 
 .btn-primary {
   background-color: #007bff;
-  color: white;
+  color: #fff;
 }
 
 .btn-primary:hover {
@@ -210,7 +208,7 @@ body {
 
 .pagination a:hover {
   background-color: #007bff;
-  color: white;
+  color: #fff;
 }
 
 .pagination span,
@@ -230,32 +228,30 @@ body {
 }
 
 .auth-card {
-  background-color: #fff;
-  padding: 30px 35px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
   width: 100%;
   max-width: 400px;
+  padding: 30px 35px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   text-align: center;
 }
 
 .auth-card h2 {
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
   align-items: center;
+  margin-bottom: 16px;
 }
 
 .form-group label {
   font-weight: 600;
   margin-bottom: 6px;
-  text-align: center;
 }
 
 .form-group input {
@@ -273,7 +269,6 @@ body {
 
 .auth-links {
   margin-top: 15px;
-  text-align: center;
   font-size: 0.9em;
 }
 
@@ -289,8 +284,8 @@ body {
 
 .admin-table th,
 .admin-table td {
-  border: 1px solid #ddd;
   padding: 8px;
+  border: 1px solid #ddd;
   text-align: center;
 }
 

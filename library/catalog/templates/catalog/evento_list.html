@@ -7,11 +7,16 @@
   {% for evento in object_list %}
     <div class="event-card">
       <div class="event-main">
-        <h2 class="event-title">{{ evento.titolo }}</h2>
+        <div class="event-header">
+          <h2 class="event-title">{{ evento.titolo }}</h2>
 
-        <p class="event-date">
-          📅 {{ evento.data }}
-        </p>
+          <p class="event-date">
+            📅 {{ evento.data|date:"d M Y" }}
+            <span class="event-time">
+              · {{ evento.data|date:"H:i" }}
+            </span>
+          </p>
+        </div>
 
         <p class="event-description">
           {{ evento.descrizione|truncatewords:20 }}
