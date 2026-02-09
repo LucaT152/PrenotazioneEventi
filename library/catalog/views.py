@@ -12,17 +12,23 @@ from django.utils import timezone
 from django.contrib.admin.views.decorators import staff_member_required
 
 
-def index(request):
-    eventi = Evento.objects.filter(data__gt=timezone.now()).order_by('data')
+class IndexView(generic.ListView):
+    model = Evento
+    template_name = 'index.html'
+    context_object_name = 'eventi'
+    paginate_by = 5
 
+    def get_queryset(self):
+        return Evento.objects.filter(
+            data__gt=timezone.now()
+        ).order_by('data')
 
-    num_visits = request.session.get('num_visits', 0) + 1
-    request.session['num_visits'] = num_visits
-
-    return render(request, 'index.html', {
-        'eventi': eventi,
-        'num_visits': num_visits
-    })
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        num_visits = self.request.session.get('num_visits', 0) + 1
+        self.request.session['num_visits'] = num_visits
+        context['num_visits'] = num_visits
+        return context
 
 class EventoListView(generic.ListView):
     model = Evento

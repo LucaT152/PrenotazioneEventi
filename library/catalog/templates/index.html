@@ -4,25 +4,38 @@
 <h1 class="title">Eventi disponibili</h1>
 
 <div class="event-list">
+
   {% for evento in eventi %}
-    <div class="event-card">
-      <h2>{{ evento.titolo }}</h2>
+  <div class="event-card">
+
+    <!-- BLOCCO SINISTRO -->
+    <div class="event-main">
+
+      <div class="event-header">
+        <h2 class="event-title">{{ evento.titolo }}</h2>
+      </div>
 
       <p class="event-date">
-        <strong>📅 Data:</strong> {{ evento.data }}
+        📅 {{ evento.data|date:"d/m/Y H:i" }}
       </p>
 
       <p class="event-description">
         {{ evento.descrizione|truncatewords:20 }}
       </p>
 
+    </div>
+
+    <!-- BLOCCO DESTRO -->
+    <div class="event-action">
       <a href="{{ evento.get_absolute_url }}" class="btn btn-primary">
         Dettagli
       </a>
     </div>
+
+  </div>
   {% empty %}
     <p>Nessun evento disponibile.</p>
   {% endfor %}
-</div>
 
+</div>
 {% endblock %}
