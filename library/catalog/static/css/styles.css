@@ -345,7 +345,10 @@ body {
   margin: 6px 0 0 0;
 }
 
-.password-info:hover + .password-tooltip {
+.password-input-container:hover  .password-tooltip {
   display: block;
 }
 
+.helptext {
+  display: none;
+}
