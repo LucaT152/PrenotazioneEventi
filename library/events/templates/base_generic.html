@@ -3,7 +3,7 @@
 
 <head>
   {% block title %}
-  <title>Catalog</title>
+  <title>Events</title>
   {% endblock %}
 
   <meta charset="utf-8">
@@ -46,7 +46,7 @@
           </form>
         </li>
         {% else %}
-        <li><a href="{% url 'login' %}?next=/catalog/">Accedi</a></li>
+        <li><a href="{% url 'login' %}?next=/events/">Accedi</a></li>
         <li><a href="{% url 'signup' '/' %}">Registrati</a></li>
         {% endif %}
       </ul>
