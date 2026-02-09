@@ -6,7 +6,9 @@
 <div class="event-list">
   {% for evento in object_list %}
     <div class="event-card">
+
       <div class="event-main">
+
         <div class="event-header">
           <h2 class="event-title">{{ evento.titolo }}</h2>
 
@@ -21,13 +23,18 @@
         <p class="event-description">
           {{ evento.descrizione|truncatewords:20 }}
         </p>
-      </div>
 
-      <div class="event-action">
         <a href="{{ evento.get_absolute_url }}" class="btn btn-primary">
           Dettagli
         </a>
       </div>
+
+      {% if evento.immagine %}
+        <img src="{{ evento.immagine.url }}"
+             alt="{{ evento.titolo }}"
+             class="event-img">
+      {% endif %}
+
     </div>
   {% endfor %}
 </div>
