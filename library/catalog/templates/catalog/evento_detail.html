@@ -3,6 +3,12 @@
 {% block content %}
 <h1>{{ object.titolo }}</h1>
 
+{% if object.immagine %}
+  <img src="{{ object.immagine.url }}"
+       alt="{{ object.titolo }}"
+       style="max-width: 100%; border-radius: 10px; margin-bottom: 20px;">
+{% endif %}
+
 <p>{{ object.descrizione }}</p>
 <p><strong>Data:</strong> {{ object.data }}</p>
 <p><strong>Posti totali:</strong> {{ object.posti_totali }}</p>
