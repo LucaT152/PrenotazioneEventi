@@ -239,23 +239,25 @@ body {
 }
 
 .form-group {
+  width: 100%;
+  margin-bottom: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 16px;
 }
 
 .form-group label {
-  font-weight: 600;
   margin-bottom: 6px;
+  font-weight: 600;
 }
 
 .form-group input {
-  width: 100%;
-  max-width: 320px;
-  padding: 10px;
+  width: 280px;              
+  height: 40px;              
+  padding: 8px 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  font-size: 0.95em;
 }
 
 .full-width {
@@ -285,17 +287,70 @@ body {
   background-color: #f2f2f2;
 }
 
-.link-action {
-  background: none;
-  border: none;
-  padding: 0;
-  color: #007bff;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
+.field-error {
+  margin-top: 6px;
+  padding: 6px 10px;
+  font-size: 0.85em;
+  color: #721c24;
+  background-color: #fdecea;
+  border-left: 4px solid #dc3545;
+  border-radius: 4px;
 }
 
-.link-action:hover {
-  text-decoration: underline;
-  color: #0056b3;
+.form-errors {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #dc3545;
+  background-color: #fdecea;
+  color: #721c24;
+  border-radius: 5px;
+  font-weight: 600;
 }
+
+.password-input-container {
+  position: relative;
+  width: 280px;
+}
+
+.password-input-container input {
+  width: 100%;
+  padding-right: 42px;
+}
+
+.password-info {
+  position: absolute;
+  right: 12px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  color: #007bff;
+  font-size: 1.1em;
+}
+
+.password-tooltip {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  width: 260px;
+  padding: 12px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  font-size: 0.85em;
+  z-index: 20;
+}
+
+.password-tooltip ul {
+  padding-left: 18px;
+  margin: 6px 0 0 0;
+}
+
+.password-info:hover + .password-tooltip {
+  display: block;
+}
+
