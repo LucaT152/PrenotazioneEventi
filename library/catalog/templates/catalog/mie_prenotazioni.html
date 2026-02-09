@@ -5,36 +5,53 @@
 {% endblock %}
 
 {% block content %}
-<h1>Le mie prenotazioni</h1>
+<h1 class="title">Le mie prenotazioni</h1>
 
 {% if prenotazioni %}
-<ul class="prenotazioni-list">
+<div class="event-list">
+
   {% for prenotazione in prenotazioni %}
-  <li class="prenotazione-item">
-    <h3>{{ prenotazione.evento.titolo }}</h3>
+  <div class="event-card">
 
-    <p>
-      <strong>Data evento:</strong>
-      {{ prenotazione.evento.data|date:"d/m/Y H:i" }}
-    </p>
+    <!-- TESTO A SINISTRA -->
+    <div class="event-main">
+      <div class="event-header">
+        <h2 class="event-title">
+          {{ prenotazione.evento.titolo }}
+        </h2>
 
-    <p>
-      <strong>Data prenotazione:</strong>
-      {{ prenotazione.data_prenotazione|date:"d/m/Y H:i" }}
-    </p>
+        <p class="event-date">
+          📅 {{ prenotazione.evento.data|date:"d/m/Y" }}
+          <span class="event-time">
+            · {{ prenotazione.evento.data|date:"H:i" }}
+          </span>
+        </p>
+      </div>
 
-    <form method="post" action="{% url 'disdici-prenotazione' prenotazione.id %}">
-      {% csrf_token %}
-      <button type="submit" class="link-action">
-        Disdici prenotazione
-      </button>
-    </form>
+      <p class="event-description">
+        <strong>Prenotato il:</strong>
+        {{ prenotazione.data_prenotazione|date:"d/m/Y H:i" }}
+      </p>
+    </div>
 
-  </li>
+    <!-- AZIONI A DESTRA -->
+    <div class="event-action">
+      <form method="post" action="{% url 'disdici-prenotazione' prenotazione.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">
+          Disdici
+        </button>
+      </form>
+    </div>
+
+  </div>
   {% endfor %}
-</ul>
+
+</div>
 {% else %}
-<p>Non hai ancora effettuato prenotazioni.</p>
+<p class="text-muted" style="text-align:center;">
+  Non hai ancora effettuato prenotazioni.
+</p>
 {% endif %}
 
 {% endblock %}
