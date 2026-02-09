@@ -132,7 +132,9 @@ def disdici_prenotazione(request, pk):
 
 @staff_member_required
 def prenotazioni_eventi(request):
-    eventi = Evento.objects.all()
+    eventi = Evento.objects.filter(
+        data__gt=timezone.now()
+    ).order_by('data')
 
     return render(request, 'catalog/prenotazioni_eventi.html', {
         'eventi': eventi
