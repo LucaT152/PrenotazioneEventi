@@ -21,12 +21,19 @@ class Evento(models.Model):
     def __str__(self):
         return self.titolo
     
+    @property
     def posti_disponibili(self):
         return self.posti_totali - self.prenotazione_set.count()
-    
+
+    @property
+    def ultimi_posti(self):
+        rimanenti = self.posti_disponibili
+        return rimanenti > 0 and (rimanenti < 10 or rimanenti < self.posti_totali * 0.02 )
+
+    @property
     def is_prenotabile(self):
-        return self.data > timezone.now() and self.posti_disponibili() > 0
-    
+        return self.data > timezone.now() and self.posti_disponibili > 0
+        
 class Prenotazione(models.Model):
     evento = models.ForeignKey(Evento, on_delete=models.CASCADE)  
     utente = models.ForeignKey(User, on_delete=models.CASCADE)

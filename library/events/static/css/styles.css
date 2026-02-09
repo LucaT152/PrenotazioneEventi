@@ -129,7 +129,7 @@ body {
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 0.85em;
-  color: #3b5bdb;
+  color: #000000;
   width: fit-content;
 }
 
@@ -138,7 +138,7 @@ body {
 }
 
 .event-time {
-  color: #3b5bdb;
+  color: #000000;
   font-weight: 500;
 }
 
@@ -170,7 +170,7 @@ a {
 }
 
 a:hover {
-  color: #6f42c1;          
+  color: #007bff;          
   text-decoration: underline;
 }
 
@@ -180,6 +180,15 @@ a:hover {
   color: #1e7e34;
   border-radius: 5px;
   font-weight: bold;
+}
+
+.status.full {
+  padding: 12px;
+  background-color: #fdecea;
+  color: #dc3545;
+  border-radius: 5px;
+  font-weight: bold;
+  border-left: 4px solid #dc3545;
 }
 
 .title {
@@ -210,7 +219,7 @@ a:hover {
 }
 
 .btn-primary:hover {
-  background-color: blue;
+  background-color: #007bff;
   color: white;
 }
 
@@ -393,4 +402,38 @@ a:hover {
 
 .helptext {
   display: none;
+}
+
+.text-warning {
+  background-color: #fff3cd;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+.banner {
+  display: inline-block;
+  margin-left: 15px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.banner-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border-left: 4px solid #ffc107;
+}
+
+.banner-danger {
+  background-color: #fdecea;
+  color: #dc3545;
+  border-left: 4px solid #dc3545;
+}
+
+.banner-success {
+  background-color: #e6ffed;
+  color: #1e7e34;
+  border-left: 4px solid #28a745;
 }

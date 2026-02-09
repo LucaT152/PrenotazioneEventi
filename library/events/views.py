@@ -55,7 +55,7 @@ def prenota_evento(request, pk):
         messages.error(request, "Evento non più prenotabile.")
         return redirect('evento-detail', pk=pk)
 
-    if evento.posti_disponibili() <= 0:
+    if evento.posti_disponibili <= 0:
         messages.error(request, "Evento completo.")
         return redirect('evento-detail', pk=pk)
 

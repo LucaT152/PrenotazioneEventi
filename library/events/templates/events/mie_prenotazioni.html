@@ -37,13 +37,9 @@
     <!-- AZIONE -->
     <div class="event-action">
       <form method="post" action="{% url 'disdici-prenotazione' prenotazione.id %}">
-  {% csrf_token %}
-  <a href="#" class="btn btn-primary"
-     onclick="this.closest('form').submit(); return false;">
-    Disdici
-  </a>
-</form>
-
+        {% csrf_token %}
+       <a href="#" class="btn btn-primary"onclick="this.closest('form').submit(); return false;">Disdici</a>
+      </form>
     </div>
 
   </div>
