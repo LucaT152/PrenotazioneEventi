@@ -75,7 +75,7 @@ def signup(request, next):
 
     if request.method != 'POST':
         form = SignupForm()
-        return render(request, 'catalog/signup.html', {'form': form})
+        return render(request, 'events/signup.html', {'form': form})
 
     else:
         form = SignupForm(request.POST)
@@ -99,7 +99,7 @@ def signup(request, next):
             return HttpResponseRedirect(next)
 
         else:
-            return render(request, 'catalog/signup.html', {'form': form})
+            return render(request, 'events/signup.html', {'form': form})
         
 def resetlogin(request, next):
     request.session['num_visits'] = 0
@@ -112,7 +112,7 @@ def mie_prenotazioni(request):
         utente=request.user
     ).select_related('evento')
 
-    return render(request, 'catalog/mie_prenotazioni.html', {
+    return render(request, 'events/mie_prenotazioni.html', {
         'prenotazioni': prenotazioni
     })
 
@@ -136,6 +136,6 @@ def prenotazioni_eventi(request):
         data__gt=timezone.now()
     ).order_by('data')
 
-    return render(request, 'catalog/prenotazioni_eventi.html', {
+    return render(request, 'events/prenotazioni_eventi.html', {
         'eventi': eventi
     })

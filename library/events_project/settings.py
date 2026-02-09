@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog.apps.CatalogConfig', 
+    'events.apps.EventsConfig' 
 ]
 
 MIDDLEWARE = [
@@ -51,12 +51,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'library.urls'
+ROOT_URLCONF = 'events_project.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'catalog' / 'templates'],
+        'DIRS': [BASE_DIR / 'events' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'library.wsgi.application'
+WSGI_APPLICATION = 'events_project.wsgi.application'
 
 
 # Database
@@ -119,7 +119,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "catalog" / "static",
+    BASE_DIR / "events" / "static",
 ]
 
 # Default primary key field type
@@ -128,8 +128,8 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Redirect to home URL after login
-LOGIN_REDIRECT_URL = '/catalog/'
-LOGOUT_REDIRECT_URL = '/catalog/'
+LOGIN_REDIRECT_URL = '/events/'
+LOGOUT_REDIRECT_URL = '/events/'
 # Redirect Django-generated emails to console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

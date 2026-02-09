@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0002_alter_prenotazione_data_prenotazione'),
+        ('events', '0002_alter_prenotazione_data_prenotazione'),
     ]
 
     operations = [
