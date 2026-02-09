@@ -11,4 +11,5 @@ urlpatterns = [
     path('mie-prenotazioni/', views.mie_prenotazioni, name='mie-prenotazioni'),
     path('prenotazione/<int:pk>/disdici/',views.disdici_prenotazione,name='disdici-prenotazione'),
     path('prenotazioni-eventi/',views.prenotazioni_eventi,name='prenotazioni-eventi'),
+    path('evento/<int:pk>/', views.EventoDetailView.as_view(), name='evento-detail'),
 ]

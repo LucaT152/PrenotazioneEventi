@@ -1,6 +1,4 @@
-/* ===============================
-   BASE
-================================ */
+
 body {
   font-family: "Lato", sans-serif;
   font-size: 1.3em;
@@ -14,9 +12,6 @@ body {
 .text-muted   { color: #6C757D; }
 
 
-/* ===============================
-   TOP NAVBAR
-================================ */
 .top-nav {
   position: sticky;
   top: 0;

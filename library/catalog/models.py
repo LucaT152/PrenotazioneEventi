@@ -10,7 +10,7 @@ class Evento(models.Model):
     data = models.DateTimeField()
     posti_totali = models.PositiveIntegerField()
     creatore = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    immagine = models.ImageField(upload_to="eventi/",blank=True,null=True)
     class Meta:
         verbose_name = "Evento"
         verbose_name_plural = "Eventi"
