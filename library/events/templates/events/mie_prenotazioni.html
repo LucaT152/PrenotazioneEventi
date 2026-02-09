@@ -13,7 +13,7 @@
   {% for prenotazione in prenotazioni %}
   <div class="event-card">
 
-    <!-- TESTO A SINISTRA -->
+    <!-- TESTO -->
     <div class="event-main">
       <div class="event-header">
         <h2 class="event-title">
@@ -21,7 +21,7 @@
         </h2>
 
         <p class="event-date">
-          📅 {{ prenotazione.evento.data|date:"d/m/Y" }}
+          📅 {{ prenotazione.evento.data|date:"d M Y" }}
           <span class="event-time">
             · {{ prenotazione.evento.data|date:"H:i" }}
           </span>
@@ -34,14 +34,16 @@
       </p>
     </div>
 
-    <!-- AZIONI A DESTRA -->
+    <!-- AZIONE -->
     <div class="event-action">
       <form method="post" action="{% url 'disdici-prenotazione' prenotazione.id %}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary">
-          Disdici
-        </button>
-      </form>
+  {% csrf_token %}
+  <a href="#" class="btn btn-primary"
+     onclick="this.closest('form').submit(); return false;">
+    Disdici
+  </a>
+</form>
+
     </div>
 
   </div>
