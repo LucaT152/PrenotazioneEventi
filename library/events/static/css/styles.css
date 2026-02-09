@@ -149,13 +149,6 @@ body {
   max-width: 620px;
 }
 
-.event-description {
-  margin: 0;
-  color: #555;
-  line-height: 1.5;
-  max-width: 620px;
-}
-
 .event-img {
   width: 220px;
   height: 140px;
@@ -413,7 +406,6 @@ a:hover {
 
 .banner {
   display: inline-block;
-  margin-left: 15px;
   padding: 8px 14px;
   border-radius: 8px;
   font-weight: 600;
@@ -423,17 +415,14 @@ a:hover {
 .banner-warning {
   background-color: #fff3cd;
   color: #856404;
-  border-left: 4px solid #ffc107;
 }
 
 .banner-danger {
   background-color: #fdecea;
   color: #dc3545;
-  border-left: 4px solid #dc3545;
 }
 
 .banner-success {
   background-color: #e6ffed;
   color: #1e7e34;
-  border-left: 4px solid #28a745;
 }
