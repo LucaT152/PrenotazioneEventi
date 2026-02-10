@@ -32,6 +32,8 @@ class IndexView(generic.ListView):
 
 class EventoListView(generic.ListView):
     model = Evento
+    template_name = 'events/evento_list.html'
+    context_object_name = 'eventi'
     paginate_by = 5
 
 class EventoDetailView(generic.DetailView):

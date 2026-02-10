@@ -39,6 +39,14 @@
           👤 {{ user.get_username }}
         </li>
 
+        {% if user.is_staff %}
+        <li>
+          <a href="/admin/" class="nav-admin">
+            Admin
+          </a>
+        </li>
+        {% endif %}
+
         <li>
           <form method="post" action="{% url 'logout' %}?next={% url 'index' %}">
             {% csrf_token %}
@@ -79,9 +87,10 @@
       Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
 
       {% if page_obj.has_next %}
-      <a href="?page={{ page_obj.next_page_number }}" >next</a>
+      <a href="?page={{ page_obj.next_page_number }}">next</a>
       {% endif %}
     </div>
+    <p class="text-muted">Accessi: {{ num_visits }}</p>
     {% endif %}
     {% endblock %}
   </div>

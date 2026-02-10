@@ -1,41 +1,41 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Eventi disponibili</h1>
+<h1 class="title">Eventi disponibili</h1>
 
 <div class="event-list">
-  {% for evento in object_list %}
-    <div class="event-card">
 
-      <div class="event-main">
+  {% for evento in eventi %}
+  <div class="event-card">
 
-        <div class="event-header">
-          <h2 class="event-title">{{ evento.titolo }}</h2>
+    <!-- BLOCCO SINISTRO -->
+    <div class="event-main">
 
-          <p class="event-date">
-            📅 {{ evento.data|date:"d M Y" }}
-            <span class="event-time">
-              · {{ evento.data|date:"H:i" }}
-            </span>
-          </p>
-        </div>
-
-        <p class="event-description">
-          {{ evento.descrizione|truncatewords:20 }}
-        </p>
-
-        <a href="{{ evento.get_absolute_url }}" class="btn btn-primary">
-          Dettagli
-        </a>
+      <div class="event-header">
+        <h2 class="event-title">{{ evento.titolo }}</h2>
       </div>
 
-      {% if evento.immagine %}
-        <img src="{{ evento.immagine.url }}"
-             alt="{{ evento.titolo }}"
-             class="event-img">
-      {% endif %}
+      <p class="event-date">
+        📅 {{ evento.data|date:"d/m/Y H:i" }}
+      </p>
+
+      <p class="event-description">
+        {{ evento.descrizione|truncatewords:20 }}
+      </p>
 
     </div>
+
+    <!-- BLOCCO DESTRO -->
+    <div class="event-action">
+      <a href="{{ evento.get_absolute_url }}" class="btn btn-primary">
+        Dettagli
+      </a>
+    </div>
+
+  </div>
+  {% empty %}
+  <p>Nessun evento disponibile.</p>
   {% endfor %}
+
 </div>
 {% endblock %}

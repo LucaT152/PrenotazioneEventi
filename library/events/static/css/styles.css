@@ -48,6 +48,15 @@ body {
   font-weight: 600;
 }
 
+.sidebar-nav a.nav-admin {
+  color: #000;
+}
+
+.sidebar-nav a.nav-admin:hover {
+  color: #000000c2;
+  text-decoration: none;
+}
+
 .messages-container {
   margin: 15px 0;
 }
