@@ -545,3 +545,96 @@ a:hover {
 .helptext {
   display: none;
 }
+
+/* ===============================
+   HOME
+================================ */
+.home-hero {
+  text-align: center;
+  margin: 50px 0 40px;
+}
+
+.home-title {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.home-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.home-section-title {
+  margin: 40px 0 25px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+/* ===============================
+   EVENT GRID
+================================ */
+.event-grid-home {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.event-card-home {
+  background: #fff;
+  padding: 25px 22px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.event-card-home:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+}
+
+.event-title-home {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.event-date-home {
+  display: inline-block;
+  margin-bottom: 14px;
+  background: #eef3ff;
+  color: #1f4fd8;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.event-description-home {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 18px;
+}
+
+/* ===============================
+   CTA
+================================ */
+.home-cta {
+  text-align: center;
+  margin: 60px 0 30px;
+}
+
+.home-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+/* ===============================
+   COUNTER
+================================ */
+.visit-counter {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+  margin-top: 30px;
+}
