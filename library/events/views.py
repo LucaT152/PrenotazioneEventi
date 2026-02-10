@@ -36,36 +36,9 @@ class EventoListView(generic.ListView):
     paginate_by = 5
     context_object_name = 'eventi'
 
-
     def get_queryset(self):
-        queryset = Evento.objects.filter(data__gte=timezone.now())
+        return Evento.objects.filter(data__gte=timezone.now() ).order_by('data')
 
-        # se arrivano nuovi filtri dal form → salvali in sessione
-        if 'from' in self.request.GET or 'to' in self.request.GET:
-            self.request.session['from'] = self.request.GET.get('from')
-            self.request.session['to'] = self.request.GET.get('to')
-
-        from_date = self.request.session.get('from')
-        to_date = self.request.session.get('to')
-
-        if from_date:
-            queryset = queryset.filter(data__date__gte=from_date)
-
-        if to_date:
-            queryset = queryset.filter(data__date__lte=to_date)
-
-        return queryset.order_by('data')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['from'] = self.request.session.get('from', '')
-        context['to'] = self.request.session.get('to', '')
-        return context
-
-def reset_filtri_eventi(request):
-    request.session.pop('from', None)
-    request.session.pop('to', None)
-    return redirect('evento-list')
 
 
 class EventoDetailView(generic.DetailView):

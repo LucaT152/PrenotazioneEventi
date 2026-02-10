@@ -648,28 +648,3 @@ a:hover {
   color: #777;
   margin-top: 30px;
 }
-
-.filter-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
-.filter {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.btn-reset {
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-weight: 600;
-  background-color: #e0e0e0;
-  color: #333;
-}
-
-.btn-reset:hover {
-  background-color: #cfcfcf;
-  text-decoration: none;
-}
