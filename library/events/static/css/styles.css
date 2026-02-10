@@ -11,7 +11,6 @@ body {
 .text-danger  { color: #dc3545; }
 .text-muted   { color: #6C757D; }
 
-
 .top-nav {
   position: sticky;
   top: 0;
@@ -24,21 +23,50 @@ body {
 .sidebar-nav {
   display: flex;
   align-items: center;
-  gap: 25px;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  padding-left: 0;
+  gap: 18px;
+  font-weight: 600;
 }
 
-.sidebar-nav a {
+/* Spinge Accedi + Registrati a destra */
+.sidebar-nav .nav-auth {
+  margin-left: auto;
+}
+
+/* Registrati NON deve spingere */
+.sidebar-nav .nav-auth + .nav-auth {
+  margin-left: 0;
+}
+
+/* Link base */
+.sidebar-nav .nav-auth a {
+  padding: 6px 14px;
+  border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
-  color: #333;
+  color: #111;
 }
 
-.sidebar-nav a:hover {
-  color: #007bff;
+/* ACCEDI */
+.sidebar-nav .nav-auth:first-child a {
+  padding: 6px 8px;
 }
+
+/* REGISTRATI → bordo blu, sfondo bianco */
+.sidebar-nav .nav-auth:last-child a {
+  border: 2px solid #1f4fd8;
+  background: #fff;
+  color: #111;
+  font-weight: 600;
+}
+
+/* Hover Registrati */
+.sidebar-nav .nav-auth:last-child a:hover {
+  background: #1f4fd8;
+  color: #fff;
+}
+
 
 .nav-user {
   margin-left: auto;
@@ -91,8 +119,6 @@ body {
   flex-direction: column;
   gap: 22px;
 }
-
-
 
 .event-card {
   background-color: white;
@@ -167,7 +193,7 @@ body {
   max-width: 100%;
   border-radius: 16px;
   object-fit: contain;
-  background: transparent;   /* ← rimosso grigio */
+  background: transparent;   
 }
 
 .event-detail-image img {
@@ -178,7 +204,6 @@ body {
   border-radius: 16px;
 }
 
-
 .event-description {
   margin-top: 28px;
   max-width: 100%;
@@ -186,7 +211,6 @@ body {
   line-height: 1.7;
   color: #444;
 }
-
 
 .event-img {
   width: 220px;
@@ -238,7 +262,6 @@ body {
   box-shadow: 0 14px 36px rgba(0,0,0,0.08);
 }
 
-
 .event-detail-title {
   margin-top: 0;
   font-size: 2.2rem;
@@ -263,8 +286,6 @@ body {
   color: black;
   opacity: 0.85;
 }
-
-
 
 .event-detail-top {
   display: flex;
@@ -366,12 +387,13 @@ a:hover {
 }
 
 .btn-warning {
-  background-color: #ffc107;
+  background-color: white;
   color: #212529;
 }
 
 .btn-warning:hover {
-  background-color: #e0a800;
+  background-color: blue;
+  color: white;
 }
 
 .pagination {
@@ -546,9 +568,6 @@ a:hover {
   display: none;
 }
 
-/* ===============================
-   HOME
-================================ */
 .home-hero {
   text-align: center;
   margin: 50px 0 40px;
@@ -570,9 +589,6 @@ a:hover {
   text-align: center;
 }
 
-/* ===============================
-   EVENT GRID
-================================ */
 .event-grid-home {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -603,7 +619,7 @@ a:hover {
   display: inline-block;
   margin-bottom: 14px;
   background: #eef3ff;
-  color: #1f4fd8;
+  color: black;
   padding: 6px 12px;
   border-radius: 999px;
   font-weight: 600;
@@ -616,9 +632,6 @@ a:hover {
   margin-bottom: 18px;
 }
 
-/* ===============================
-   CTA
-================================ */
 .home-cta {
   text-align: center;
   margin: 60px 0 30px;
@@ -628,7 +641,6 @@ a:hover {
   font-size: 1.1rem;
   margin-bottom: 12px;
 }
-
 
 .visit-counter {
   text-align: center;
