@@ -55,8 +55,8 @@
           </form>
         </li>
         {% else %}
-        <li><a href="{% url 'login' %}?next=/events/">Accedi</a></li>
-        <li><a href="{% url 'signup' '/' %}">Registrati</a></li>
+        <li class="nav-auth"><a href="{% url 'login' %}?next=/events/">Accedi</a></li>
+        <li class="nav-auth"><a href="{% url 'signup' '/' %}">Registrati</a></li>
         {% endif %}
       </ul>
     </div>
