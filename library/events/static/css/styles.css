@@ -138,7 +138,7 @@ body {
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 0.85em;
-  color: #000000;
+  color: black;
   width: fit-content;
 }
 
@@ -147,7 +147,7 @@ body {
 }
 
 .event-time {
-  color: #000000;
+  color: black;
   font-weight: 500;
 }
 
@@ -158,12 +158,161 @@ body {
   max-width: 620px;
 }
 
+.event-detail-content{
+  flex: 1.2;
+}
+
+.event-detail-image {
+  width: 420px;
+  max-width: 100%;
+  border-radius: 16px;
+  object-fit: contain;
+  background: transparent;   /* ← rimosso grigio */
+}
+
+.event-detail-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+
+.event-description {
+  margin-top: 28px;
+  max-width: 100%;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+
 .event-img {
   width: 220px;
   height: 140px;
   object-fit: cover;
   border-radius: 8px;
 }
+
+.event-detail {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.event-detail-description {
+  margin-top: 30px;
+  font-size: 1.05em;
+  line-height: 1.7;
+  color: #444;
+}
+
+.event-detail-meta {
+  margin-top: 25px;
+  display: flex;
+  gap: 40px;
+  font-weight: 600;
+}
+
+.event-hero {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 16px;
+  margin-bottom: -120px;
+}
+
+.event-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-detail-card {
+  max-width: 900px;   /* più grande */
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 20px;
+  padding: 36px 40px;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+}
+
+
+.event-detail-title {
+  margin-top: 0;
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.event-date-detail {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eef3ff;
+  color: black;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  line-height: 1;
+  margin-bottom: 18px;
+  margin-top: 8px;
+}
+
+.event-time-detail {
+  color: black;
+  opacity: 0.85;
+}
+
+
+
+.event-detail-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.event-detail-info {
+  flex: 1;
+}
+
+.event-detail-info h1 {
+  margin-top: 0;
+  font-size: 2.2em;
+}
+
+.event-stats {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+.event-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 22px;
+}
+
+.status {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.status.booked {
+  background: #e6ffed;
+  color: #1e7e34;
+}
+
+.status.soldout {
+  background: #fdecea;
+  color: #721c24;
+}
+
 
 a {
   color: #333;              
@@ -172,7 +321,7 @@ a {
 }
 
 a:hover {
-  color: #007bff;          
+  color: #6f42c1;          
   text-decoration: underline;
 }
 
@@ -182,15 +331,6 @@ a:hover {
   color: #1e7e34;
   border-radius: 5px;
   font-weight: bold;
-}
-
-.status.full {
-  padding: 12px;
-  background-color: #fdecea;
-  color: #dc3545;
-  border-radius: 5px;
-  font-weight: bold;
-  border-left: 4px solid #dc3545;
 }
 
 .title {
@@ -221,7 +361,7 @@ a:hover {
 }
 
 .btn-primary:hover {
-  background-color: #007bff;
+  background-color: blue;
   color: white;
 }
 
@@ -404,34 +544,4 @@ a:hover {
 
 .helptext {
   display: none;
-}
-
-.text-warning {
-  background-color: #fff3cd;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 0.9em;
-}
-
-.banner {
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9em;
-}
-
-.banner-warning {
-  background-color: #fff3cd;
-  color: #856404;
-}
-
-.banner-danger {
-  background-color: #fdecea;
-  color: #dc3545;
-}
-
-.banner-success {
-  background-color: #e6ffed;
-  color: #1e7e34;
 }
