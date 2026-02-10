@@ -3,6 +3,29 @@
 {% block content %}
 <h1 class="title">Eventi disponibili</h1>
 
+<!-- FILTRI DATA -->
+<form method="get" style="margin-bottom: 25px; text-align: center;">
+  <label>
+    Da:
+    <input type="date" name="from" value="{{ request.GET.from }}">
+  </label>
+
+  <label style="margin-left: 10px;">
+    A:
+    <input type="date" name="to" value="{{ request.GET.to }}">
+  </label>
+
+  <button type="submit" class="btn btn-primary" style="margin-left: 10px;">
+    Filtra
+  </button>
+
+  {% if request.GET.from or request.GET.to %}
+    <a href="{% url 'evento-list' %}" class="btn btn-warning" style="margin-left: 10px;">
+      Reset
+    </a>
+  {% endif %}
+</form>
+
 <div class="event-list">
 
   {% for evento in eventi %}
@@ -34,7 +57,9 @@
 
   </div>
   {% empty %}
-  <p>Nessun evento disponibile.</p>
+    <p class="text-muted" style="text-align:center;">
+      Nessun evento disponibile per il periodo selezionato.
+    </p>
   {% endfor %}
 
 </div>

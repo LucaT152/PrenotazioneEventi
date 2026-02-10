@@ -36,6 +36,20 @@ class EventoListView(generic.ListView):
     context_object_name = 'eventi'
     paginate_by = 5
 
+    def get_queryset(self):
+        queryset = Evento.objects.filter(data__gte=timezone.now())
+
+        from_date = self.request.GET.get('from')
+        to_date = self.request.GET.get('to')
+
+        if from_date:
+            queryset = queryset.filter(data__date__gte=from_date)
+
+        if to_date:
+            queryset = queryset.filter(data__date__lte=to_date)
+
+        return queryset.order_by('data')
+
 class EventoDetailView(generic.DetailView):
     model = Evento
 
