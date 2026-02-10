@@ -3,28 +3,27 @@
 {% block content %}
 <h1 class="title">Eventi disponibili</h1>
 
-<!-- FILTRI DATA -->
-<form method="get" style="margin-bottom: 25px; text-align: center;">
-  <label>
-    Da:
-    <input type="date" name="from" value="{{ request.GET.from }}">
-  </label>
+<div class="filter-container">
+  <form method="get" class="filter">
+    <label>
+      Da:
+      <input type="date" name="from" value="{{ from }}">
+    </label>
 
-  <label style="margin-left: 10px;">
-    A:
-    <input type="date" name="to" value="{{ request.GET.to }}">
-  </label>
+    <label>
+      A:
+      <input type="date" name="to" value="{{ to }}">
+    </label>
 
-  <button type="submit" class="btn btn-primary" style="margin-left: 10px;">
-    Filtra
-  </button>
+    <button type="submit" class="btn btn-primary">
+      Filtra
+    </button>
 
-  {% if request.GET.from or request.GET.to %}
-    <a href="{% url 'evento-list' %}" class="btn btn-warning" style="margin-left: 10px;">
-      Reset
+    <a href="{% url 'evento-list' %}" class="btn btn-reset">
+      Resetta
     </a>
-  {% endif %}
-</form>
+  </form>
+</div>
 
 <div class="event-list">
 

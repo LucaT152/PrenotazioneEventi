@@ -33,14 +33,20 @@ class IndexView(generic.ListView):
 class EventoListView(generic.ListView):
     model = Evento
     template_name = 'events/evento_list.html'
-    context_object_name = 'eventi'
     paginate_by = 5
+    context_object_name = 'eventi'
+
 
     def get_queryset(self):
         queryset = Evento.objects.filter(data__gte=timezone.now())
 
-        from_date = self.request.GET.get('from')
-        to_date = self.request.GET.get('to')
+        # se arrivano nuovi filtri dal form → salvali in sessione
+        if 'from' in self.request.GET or 'to' in self.request.GET:
+            self.request.session['from'] = self.request.GET.get('from')
+            self.request.session['to'] = self.request.GET.get('to')
+
+        from_date = self.request.session.get('from')
+        to_date = self.request.session.get('to')
 
         if from_date:
             queryset = queryset.filter(data__date__gte=from_date)
@@ -49,6 +55,18 @@ class EventoListView(generic.ListView):
             queryset = queryset.filter(data__date__lte=to_date)
 
         return queryset.order_by('data')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['from'] = self.request.session.get('from', '')
+        context['to'] = self.request.session.get('to', '')
+        return context
+
+def reset_filtri_eventi(request):
+    request.session.pop('from', None)
+    request.session.pop('to', None)
+    return redirect('evento-list')
+
 
 class EventoDetailView(generic.DetailView):
     model = Evento
