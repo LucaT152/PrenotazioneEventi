@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 class="title">Eventi Prenotati</h1>
+
+<table class="admin-table">
+  <tr>
+    <th>Evento</th>
+    <th>Data</th>
+    <th>Posti occupati</th>
+    <th>Posti totali</th>
+  </tr>
+
+  {% for evento in eventi %}
+  <tr>
+    <td>{{ evento.titolo }}</td>
+    <td>{{ evento.data|date:"d/m/Y H:i" }}</td>
+    <td>{{ evento.prenotazione_set.count }}</td>
+    <td>{{ evento.posti_totali }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

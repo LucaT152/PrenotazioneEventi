@@ -1,0 +1,37 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Accedi</h2>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="id_username">Email o Username</label>
+        {{ form.username }}
+      </div>
+
+      <div class="form-group">
+        <label for="id_password">Password</label>
+        {{ form.password }}
+      </div>
+
+      <button type="submit" class="btn btn-primary full-width">
+        Accedi
+      </button>
+    </form>
+
+    <div class="auth-links">
+      <a href="{% url 'password_reset' %}" class="a">
+        Hai dimenticato la password?
+      </a>
+      <br>
+      <a href="{% url 'signup' '/' %}" class="a">
+        Non hai un account? Registrati
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

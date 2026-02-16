@@ -1,0 +1,13 @@
+Gruppi Django:
+
+Organizzatore --> Crea, Modifica e Cancella Eventi, vede prenotazioni
+Utente --> Prenota
+
+
+
+Utente1 --> password = passwordutente1
+
+Addetto1 --> password = passwordaddetto1
+
+supeuser 
+lator --> passowrd = LucaGerry05

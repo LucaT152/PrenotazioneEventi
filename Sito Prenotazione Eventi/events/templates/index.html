@@ -1,0 +1,51 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="home-hero">
+  <h1 class="home-title">Benvenuto</h1>
+  <p class="home-subtitle">
+    Scopri e prenota gli eventi disponibili del momento
+  </p>
+</div>
+
+<h2 class="home-section-title">Eventi disponibili ora</h2>
+
+<div class="event-grid-home">
+  {% for evento in eventi %}
+    {% if evento.posti_disponibili > 0 %}
+      <div class="event-card-home">
+
+        <h3 class="event-title-home">{{ evento.titolo }}</h3>
+
+        <div class="event-date-home">
+          📅 {{ evento.data|date:"d/m/Y H:i" }}
+        </div>
+
+        <p class="event-description-home">
+          {{ evento.descrizione|truncatewords:16 }}
+        </p>
+
+        <a href="{{ evento.get_absolute_url }}" class="btn btn-primary">
+          Dettagli
+        </a>
+
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<div class="home-cta">
+  <p>
+    Vuoi vedere tutti gli eventi?
+  </p>
+  <a href="{% url 'evento-list' %}" class="btn btn-warning">
+    Vai a tutti gli eventi
+  </a>
+</div>
+
+<p class="visit-counter">
+  Accessi alla pagina: {{ num_visits }}
+</p>
+{% block pagination %}{% endblock %}
+{% endblock %}

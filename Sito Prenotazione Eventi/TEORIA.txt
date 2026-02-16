@@ -1,0 +1,10 @@
+Paginazione:
+Per riuscire a impaginare il contenuto in modo decente usiaamo in combinazione le views
+che ci permettono tramite paginate_by di filtrare quanti di quegli oggetti possimo visualizzare
+in un solo momento e lo stile template css.
+Possiamo usare dei parametri dentri il template pagina 205 slides. 
+
+COME CREARE UNA CLASSE IN MODO COMPLETO:
+1) Creare la classe in models.py con tutti i suoi metodi e funzioni
+2) Registrare la funzione in admin.py per renderla disponibile
+3) 
